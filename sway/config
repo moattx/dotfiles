@@ -26,7 +26,7 @@ set $menu bemenu-run
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 #output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 output * bg /home/moatx/Downloads/wp9005858-anime-fantasy-4k-wallpapers.jpg fill
-exec mako
+exec dunst
 #
 # Example configuration:
 #
@@ -211,7 +211,7 @@ bar {
        #" battery: $(power) temp: $(temp) usedMem: $(mem -u) date: $(date +"%F") time: $(date +"%I:%M:%S")"
     	#status_command   while do; echo "battery: $(power) temp: $(temp) usedMem: $(mem -u) date: $(date +"%F") time: $(date +"%I:%M:%S"); done
     #status_command while date +'%Y-%m-%d %I:%M:%S %p'; do sleep 1; done
-    status_command while status_run; do sleep 1; done
+    status_command while /home/moatx/dotfiles/bin/status.sh; do sleep 1; done
 
     colors {
         statusline #ffffff
