@@ -25,7 +25,10 @@ set $menu bemenu-run
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 #output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-output * bg /home/moatx/Downloads/wp9005858-anime-fantasy-4k-wallpapers.jpg fill
+#output * bg /home/moatx/Downloads/wp9005858-anime-fantasy-4k-wallpapers.jpg fill
+#output * bg /home/moatx/Downloads/beautiful.jpg fill
+#output * bg /home/moatx/Downloads/yeser.jpg fill
+output * bg /home/moatx/Downloads/try.jpg fill
 exec dunst
 #
 # Example configuration:
@@ -74,6 +77,9 @@ exec dunst
     # Start your launcher
     bindsym $mod+d exec $menu
 
+    #screen shot
+    bindsym $mod+Shift+m exec grim
+
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
     # Despite the name, also works for non-floating windows.
@@ -85,7 +91,8 @@ exec dunst
     bindsym $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    #bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+Shift+e exec swaymsg exit
 #
 # Moving around:
 #
@@ -203,21 +210,55 @@ bindsym $mod+r mode "resize"
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
-bar {
-    position bottom
+#bar {
+#    #position bottom
+#    position top
+#
+#    # When the status_command prints a new line to stdout, swaybar updates.
+#    # The default just shows the current date and time.
+#       #" battery: $(power) temp: $(temp) usedMem: $(mem -u) date: $(date +"%F") time: $(date +"%I:%M:%S")"
+#    	#status_command   while do; echo "battery: $(power) temp: $(temp) usedMem: $(mem -u) date: $(date +"%F") time: $(date +"%I:%M:%S"); done
+#    #status_command while date +'%Y-%m-%d %I:%M:%S %p'; do sleep 1; done
+#    status_command while /home/moatx/dotfiles/bin/status.sh; do sleep 1; done
+#
+#    colors {
+#        statusline #ffffff
+#        background #323232
+#        inactive_workspace #32323200 #32323200 #5c5c5c
+#    }
+#}
 
-    # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
-       #" battery: $(power) temp: $(temp) usedMem: $(mem -u) date: $(date +"%F") time: $(date +"%I:%M:%S")"
-    	#status_command   while do; echo "battery: $(power) temp: $(temp) usedMem: $(mem -u) date: $(date +"%F") time: $(date +"%I:%M:%S"); done
-    #status_command while date +'%Y-%m-%d %I:%M:%S %p'; do sleep 1; done
-    status_command while /home/moatx/dotfiles/bin/status.sh; do sleep 1; done
+bar swaybar_command waybar
 
-    colors {
-        statusline #ffffff
-        background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
-    }
+# Cursor
+seat * {
+    hide_cursor when-typing disable
+    xcursor_theme Vimix-white-cursors
 }
+
+# Gaps
+gaps inner 10
+smart_borders no_gaps
+smart_gaps on
+
+# Borders
+default_border pixel 2
+
+# Inhibit idle in fullscreen
+for_window [class="^.*"] inhibit_idle fullscreen
+for_window [app_id="^.*"] inhibit_idle fullscreen
+
+for_window [app_id="zoom"] floating enable
+
+
+# Color scheme
+# class                 border  backgr. text    indicator child_border
+client.focused          #333333 #333333 #bbbbbb #3a94da   #3a94da
+client.focused_inactive #333333 #333333 #bbbbbb #333333   #333333
+client.unfocused        #181818 #181818 #bbbbbb #333333   #333333
+client.urgent           #e34444 #e34444 #bbbbbb #e34444   #e34444
+client.placeholder      #000000 #000000 #bbbbbb #000000   #000000
+client.background       #000000
+
 
 include /etc/sway/config.d/*

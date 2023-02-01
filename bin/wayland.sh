@@ -13,6 +13,7 @@ export GTK_THEME=Adwaita:dark
 export GDK_BACKEND=wayland
 
 dbus-daemon --session --address=unix:path="$XDG_RUNTIME_DIR"/bus &
+export $(dbus-launch)
 exec $1
 # Hyprland
 
