@@ -12,8 +12,14 @@ export CLUTTER_BACKEND=wayland
 export GTK_THEME=Adwaita:dark
 export GDK_BACKEND=wayland
 
-dbus-daemon --session --address=unix:path="$XDG_RUNTIME_DIR"/bus &
-export $(dbus-launch)
-exec $1
-# Hyprland
+export XDG_SESSION_TYPE=wayland
 
+export MOZ_ENABLE_WAYLAND=1 
+export QT_QPA_PLATFORM=wayland 
+export XDG_SESSION_TYPE=wayland 
+
+#dbus-daemon --session --address=unix:path="$XDG_RUNTIME_DIR"/bus &
+#export $(dbus-launch)
+#export DISPLAY=:0.0
+#exec dbus-run-session $1
+exec $1
