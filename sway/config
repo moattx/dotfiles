@@ -28,8 +28,8 @@ set $menu bemenu-run
 #output * bg /home/moatx/Downloads/wp9005858-anime-fantasy-4k-wallpapers.jpg fill
 #output * bg /home/moatx/Downloads/beautiful.jpg fill
 #output * bg /home/moatx/Downloads/yeser.jpg fill
-output * bg /home/moatx/Downloads/try.jpg fill
-exec dunst
+#output * bg /home/moatx/Downloads/try.jpg fill
+#exec dunst
 #
 # Example configuration:
 #
@@ -228,7 +228,18 @@ bindsym $mod+r mode "resize"
 #    }
 #}
 
-bar swaybar_command waybar
+bar {
+	position top
+	status_command /home/moatx/dotfiles/bin/status.sh
+    colors {
+        statusline #ffffff
+        background #323232
+        inactive_workspace #32323200 #32323200 #5c5c5c
+    }
+
+}
+
+#bar swaybar_command waybar
 
 # Cursor
 seat * {
