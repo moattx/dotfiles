@@ -13,6 +13,10 @@ while :; do
 	  charging_status="discharging"
    fi
 
-   echo "batt: $(power) ($charging_status) | temp: $(temp) | mem: $(mem -u) / $memtotal | $(date +"%F") $(date +"%I:%M:%S") "
+   # will this solves the heating problem???
+   sleep 0.5
+
+   # d = dwm
+   [ "$1" = "-d" ] && xsetroot -name "batt: $(power) ($charging_status) | temp: $(temp) | mem: $(mem -u) / $memtotal | $(date +"%F") $(date +"%I:%M:%S") " || echo "batt: $(power) ($charging_status) | temp: $(temp) | mem: $(mem -u) / $memtotal | $(date +"%F") $(date +"%I:%M:%S") "
 done 
 

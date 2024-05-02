@@ -18,6 +18,10 @@ export MOZ_ENABLE_WAYLAND=1
 export QT_QPA_PLATFORM=wayland 
 export XDG_SESSION_TYPE=wayland 
 
+
+/home/moatx/projects/powernotif/target/release/pownotif &
+
+
 #dbus-daemon --session --address=unix:path="$XDG_RUNTIME_DIR"/bus &
 #export $(dbus-launch)
 #export DISPLAY=:0.0

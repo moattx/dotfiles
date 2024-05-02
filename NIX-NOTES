@@ -1,0 +1,46 @@
+TODO: I dont think I should have put my utools in .nix-profile/bin. Make your own bin dir and put it in path
+
+
+Take notes while learning about nix. This will be put into your dotfiles repo.
+
+Make it like your own personal doc/reference for future use or when you forget.
+
+TODO: start off by writing about nix and its features.
+
+
+
+    A piece of Nix language code is a Nix expression.
+
+    Evaluating a Nix expression produces a Nix value.
+
+    The content of a Nix file (file extension .nix) is a Nix expression.
+To evaluate means to transform an expression into a value according to the language rules.
+
+
+
+You will sometimes see attribute sets declared with rec prepended. This allows access to attributes from within the set
+
+
+It is also possible to inherit names from a specific attribute set with parentheses (inherit (...) ...).
+
+Example:
+
+let
+  a = { x = 1; y = 2; };
+in
+{
+  inherit (a) x y;
+}
+
+
+
+A build task in Nix is called a derivation.
+
+Build tasks are at the core of both Nix and the Nix language:
+
+    The Nix language is used to describe build tasks.
+
+    Nix runs build tasks to produce build results.
+
+    Build results can in turn be used as inputs for other build tasks.
+

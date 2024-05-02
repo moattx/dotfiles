@@ -1,0 +1,18 @@
+sort=-time
+layer=overlay
+
+# size
+width=300
+height=80
+border-size=2
+
+# font & colors
+background-color=#2e3440
+border-color=#88c0d0
+icons=0
+font=jetbrains-mono
+#max-icon-size=64
+
+# timeout
+ignore-timeout=1
+default-timeout=3000
