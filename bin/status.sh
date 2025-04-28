@@ -1,22 +1,25 @@
 #!/bin/sh
 
-
-memtotal="$(mem -t)"
-
 while :; do
-   #printf "%s" "battery: $(power) | temp: $(temp) | usedMem: $(mem -u) | date: $(date +"%F") | time: $(date +"%I:%M:%S") "
-   #
-   if [ "$(power -c)" = "yes" ] 
-   then
-	   charging_status="charging"
-   else
-	  charging_status="discharging"
-   fi
+	if [ "$(power -c)" = "yes" ]; then
+		charging_status="charging"
+                charging_emoji="🔋"
+	else
+		charging_status="discharging"
+                charging_emoji="🪫"
+                
+	fi
 
-   # will this solves the heating problem???
-   sleep 0.5
+	#[ "$(curl -o /dev/null -s -w "%{http_code}\n" https://example.com)" = '200' ] && INTERNET="yes" || INTERNET="NO"
+        if [ "$(curl -o /dev/null -s -w "%{http_code}\n" https://example.com)" = '200' ]; then
+                INTERNET="yes"
+        else
+            INTERNET="false"
+        fi
 
-   # d = dwm
-   [ "$1" = "-d" ] && xsetroot -name "batt: $(power) ($charging_status) | temp: $(temp) | mem: $(mem -u) / $memtotal | $(date +"%F") $(date +"%I:%M:%S") " || echo "batt: $(power) ($charging_status) | temp: $(temp) | mem: $(mem -u) / $memtotal | $(date +"%F") $(date +"%I:%M:%S") "
-done 
+	printf "%s" "$charging_emoji $(power) ($charging_status) 🛜 $INTERNET  🌡️ $(temp)  💾 $(mem -u) / $(mem -t)  $(date +"%F") $(date +"%I:%M:%S") "
 
+	# timeout to not hog up system resources and heat up the laptop
+	sleep 0.4
+
+done
